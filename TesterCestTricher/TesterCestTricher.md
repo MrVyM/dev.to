@@ -2,9 +2,7 @@
 
 ## CI 
 ### Histoire
-Qui 
-Quand 
-OU
+>  In 1999, Beck elaborated more in his first full book on Extreme Programming. CruiseControl, one of the first open-source CI tools, self-published source was released in 2001.
 ### Pourquoi
 ## Simple Compile
 ## Compile with flags
