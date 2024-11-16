@@ -1,6 +1,5 @@
-# Disque dur : SAS, SATA, SCSI ou IDE
 
-Notre but dans cet article est de mieux comprendre le concept des interfaces de programmation, des couches physiques et des jeux de commandes, et plus simplement des systèmes de stockage qui nous entourent.
+Notre but dans cet article est de mieux comprendre le concept des interfaces matérielles / programmation, des couches physiques et des jeux de commandes, et plus simplement des systèmes de stockage qui nous entourent.
 
 Mais d'abord, un "rapide" récapitulatif de l'état actuel de nos périphériques de stockage :
 
@@ -12,6 +11,16 @@ Mais d'abord, un "rapide" récapitulatif de l'état actuel de nos périphérique
 | NVMe (Non-Volatile Memory Express) | PCIe (Peripheral Component Interconnect Express) | Bus PCIe | AHCI (Advanced Host Controller Interface) |
 
 Si vous vous demandez, oui, les constructeurs ont pris un malin plaisir à utiliser le même nom entre l'interface et la norme.
+
+--
+Avant de commencer, un point vocabulaire
+> Couche Physique : C'est le cable et le connecteur.
+
+> Interface Materielle : C'est la maniere de communiquer, attention ne pas confondre avec le "language". 
+
+> Jeu de commandes : C'est le language utilisé.
+
+Pour faire une analogie, si vous etes un humain (j'espere :thinking:), la couche physique c'est vos cordes vocales, l'interface materielle, c'est la maniere de faire vibrer vos cordes et le jeu de commandes, c'est le language utilisé. 
 
 ## Norme de stockage
 
@@ -40,8 +49,6 @@ C'est un protocole propriétaire mais très performant pour son temps. Son grand
 
 De plus, la norme a l'avantage de pouvoir écrire en duplex, c'est-à-dire lire et écrire des données simultanément.
 
-![PATA Pin out](./PATA_Pinout.png)
-
 ## Interface matérielle
 
 ### IDE
@@ -55,6 +62,9 @@ C'est une ré-implémentation de l'interface matérielle parallèle en série (S
 
 > Qu'est-ce qu'un port parallèle ?  
 > Contrairement au port série, un port parallèle peut transférer un ensemble de 8 bits à la fois sur huit fils différents.
+
+Pour vous donner une idée de l'interface matérielle / couche physique.
+![PATA Pin-out](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/si132dwg6anuqybjfeal.png)
 
 ### PCIe
 
@@ -73,14 +83,18 @@ PCIe est largement utilisé dans les systèmes modernes en raison de sa vitesse 
 Globalement, c'est la partie la plus simple de l'article.  
 (Enfin, en électronique, ce n'est jamais simple).
 
-Une couche physique, cela signifie que c'est la norme qui régit la façon de réaliser le câble et le connecteur.
+Une couche physique, cela signifie que c'est la norme qui régit la façon de réaliser le câble et le connecteur (cf Illustration du Pin-out)
 
-![Couche Physique](https://upload.wikimedia.org/wikipedia/commons/5/52/ASUS_ATA_cable_80wire_detail_20041201.jpg)
 
+
+Une nappe IDE
+![Nappe IDE](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fu04kfy2js7vjn27lbpg.jpg)
 Dans notre cas, c'est un câble dit "IDE".  
 Ce genre de câble est la version parallèle, il contient 80 fils, ce qui permet de connecter deux appareils à la carte mère. Le premier sera appelé "master" et le deuxième "slave".
 
-Je ne vais pas détailler les différents câbles qui existent.
+
+![Master Slave PATA](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/10bq0ctd4sh4ettg1514.png)
+Mais je ne vais pas détailler les différents câbles qui existent.
 
 ## Jeux de commandes
 
@@ -107,7 +121,7 @@ Ce jeu de commandes facilite également des fonctionnalités telles que la gesti
 
 AHCI a été conçu pour améliorer les performances et la gestion des périphériques de stockage SATA en optimisant l'utilisation des ressources et la vitesse des transferts.
 
-## Conclusion / Performance
+# Conclusion / Performance
 
 Nous n'avons toujours pas parlé de la partie performance de ces différences, donc voici le mot de la fin.
 
@@ -121,3 +135,4 @@ Nous n'avons toujours pas parlé de la partie performance de ces différences, d
 | **M.2**      | Selon PCIe (16-32 Gb/s)  | PCIe ou SATA     | Ordinateurs portables et de bureau       |
 | **Thunderbolt 3/4** | 40 Gb/s           | Série (USB-C)    | Stockage externe rapide                  |
 | **USB 4**    | 40 Gb/s                  | Série (USB-C)    | Stockage externe polyvalent              |
+
